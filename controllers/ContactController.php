@@ -129,6 +129,7 @@ class ContactController{
 		
 		$headers = "MIME-Version: 1.0\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";		
+		$headers .= "From: contato@maynardtransporteturismo.com.br\r\n";
 		//$headers .= "From: " . $contact->getEmail() . "\r\n";
 		$headers .= 'Cc: jean.silva@gmail.com' . "\r\n";
 		$headers .= 'Bcc: lsilveriomarques@gmail.com' . "\r\n";
