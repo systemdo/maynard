@@ -113,25 +113,26 @@ class ContactController{
 		if(!empty($contact->getTextoConsulta())){
 			$message .= "<tr><td><strong>Texto de Consulta:</strong> </td><td>" .strip_tags($contact->getTextoConsulta()). "</td></tr>";
 		}
-		$message .= "<tr><td><strong>Ip Solicitante:</strong> </td><td>" . $this->getRealIp() . "</td></tr>";
+		//$message .= "<tr><td><strong>Ip Solicitante:</strong> </td><td>" . $this->getRealIp() . "</td></tr>";
 
-		$message .= "<tr><td><strong>Local Solicitante:</strong> </td><td>" . gethostbyaddr($this->getRealIp()) . "</td></tr>";
+		//$message .= "<tr><td><strong>Local Solicitante:</strong> </td><td>" . gethostbyaddr($this->getRealIp()) . "</td></tr>";
 		$message .= "</table>";
 		$message .= "</body></html>";
 
 		//$to = 'lukinhasmad@gmail.com';
-		//$to = 'aloysiomaynard@hotmail.com';
-		$to = 'jean.silva@gmail.com';
+		$to = 'aloysiomaynard@hotmail.com';
+		//$to = 'jean.silva@gmail.com';
 
-		//$subject = "Consulta Cliente(". $contact->getNome().")";
+		//$subject = "Consulta Cliente(". utf8_encode($contact->getNome()).")";
 		$subject = "Consulta Cliente";
 
 		
-		$headers = "From: " . $contact->getEmail() . "\r\n";
-		$headers .= "Cc: lukinhasmad@gmail.com \r\n";
-		$headers .= "MIME-Version: 1.0\r\n";
-		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-		
+		$headers = "MIME-Version: 1.0\r\n";
+		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";		
+		//$headers .= "From: " . $contact->getEmail() . "\r\n";
+		$headers .= 'Cc: jean.silva@gmail.com' . "\r\n";
+		$headers .= 'Bcc: lsilveriomarques@gmail.com' . "\r\n";
+		//$headers .= "Cc: lukinhasmad@gmail.com \r\n";
 		if (mail($to, $subject, $message, $headers)) {
 			return true;
 			//echo 'Your message has been sent.';
